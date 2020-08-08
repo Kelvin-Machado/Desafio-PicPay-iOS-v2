@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ContatosViewController.swift
 //  Desafio-PicPay-iOS-v2
 //
 //  Created by Kelvin Batista Machado on 07/08/20.
@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ContatosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupNavBar()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 }
-
