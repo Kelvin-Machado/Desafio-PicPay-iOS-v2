@@ -32,7 +32,7 @@ class ContatosTableViewController: UITableViewController {
                     JSONDecoder().decode([Contact].self, from: data)
                 self.contatos = contatosBaixados
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.loadContatos()
                 }
             } catch let jsonError {
                 print("Error serializing json:", jsonError)
@@ -44,9 +44,11 @@ class ContatosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contatos.count
     }
-// swiftlint:disable force_cast line_length
+
+// swiftlint:disable force_cast
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("ContatoTableViewCell", owner: self, options: nil)?.first as! ContatoTableViewCell
+
         cell.username.text = contatos[indexPath.row].username
         cell.name.text = contatos[indexPath.row].name
 
@@ -63,7 +65,16 @@ class ContatosTableViewController: UITableViewController {
         }
         return cell
     }
-// swiftlint:enable force_cast line_length
+
+    func loadContatos() {
+        contatos = contatos.sorted { (contato1, contato2) -> Bool in
+            let contatoNome1: String = contato1.name
+            let contatoNome2: String = contato2.name
+            return (contatoNome1.localizedCaseInsensitiveCompare(contatoNome2) == .orderedAscending)
+        }
+         tableView.reloadData()
+    }
+// swiftlint:enable force_cast
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         76
