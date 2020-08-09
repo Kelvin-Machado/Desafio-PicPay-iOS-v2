@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		309A104393084FAEA8E2FF02 /* Pods_Desafio_PicPay_iOS_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */; };
+		B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */; };
+		B66DB23724DFDDCF00DE8012 /* ContatoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B66DB23524DFDDCF00DE8012 /* ContatoTableViewCell.xib */; };
 		B68EC74224DDCDD000E449F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC74124DDCDD000E449F1 /* AppDelegate.swift */; };
 		B68EC74424DDCDD000E449F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC74324DDCDD000E449F1 /* SceneDelegate.swift */; };
-		B68EC74624DDCDD000E449F1 /* ContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC74524DDCDD000E449F1 /* ContatosViewController.swift */; };
+		B68EC74624DDCDD000E449F1 /* ContatosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC74524DDCDD000E449F1 /* ContatosTableViewController.swift */; };
 		B68EC74924DDCDD000E449F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68EC74724DDCDD000E449F1 /* Main.storyboard */; };
 		B68EC74B24DDCDD300E449F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68EC74A24DDCDD300E449F1 /* Assets.xcassets */; };
 		B68EC74E24DDCDD300E449F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68EC74C24DDCDD300E449F1 /* LaunchScreen.storyboard */; };
@@ -24,10 +26,12 @@
 /* Begin PBXFileReference section */
 		66C7BEDD09D2B0CB382847E2 /* Pods-Desafio-PicPay-iOS-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desafio-PicPay-iOS-v2.debug.xcconfig"; path = "Target Support Files/Pods-Desafio-PicPay-iOS-v2/Pods-Desafio-PicPay-iOS-v2.debug.xcconfig"; sourceTree = "<group>"; };
 		707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desafio_PicPay_iOS_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoTableViewCell.swift; sourceTree = "<group>"; };
+		B66DB23524DFDDCF00DE8012 /* ContatoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContatoTableViewCell.xib; sourceTree = "<group>"; };
 		B68EC73E24DDCDD000E449F1 /* Desafio-PicPay-iOS-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Desafio-PicPay-iOS-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68EC74124DDCDD000E449F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68EC74324DDCDD000E449F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B68EC74524DDCDD000E449F1 /* ContatosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatosViewController.swift; sourceTree = "<group>"; };
+		B68EC74524DDCDD000E449F1 /* ContatosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatosTableViewController.swift; sourceTree = "<group>"; };
 		B68EC74824DDCDD000E449F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B68EC74A24DDCDD300E449F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B68EC74D24DDCDD300E449F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				B68EC74724DDCDD000E449F1 /* Main.storyboard */,
+				B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */,
+				B66DB23524DFDDCF00DE8012 /* ContatoTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,7 +119,7 @@
 		B68EC75724DDCEF400E449F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B68EC74524DDCDD000E449F1 /* ContatosViewController.swift */,
+				B68EC74524DDCDD000E449F1 /* ContatosTableViewController.swift */,
 				B68EC76C24DE3DA200E449F1 /* Others */,
 			);
 			path = Controller;
@@ -213,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B66DB23724DFDDCF00DE8012 /* ContatoTableViewCell.xib in Resources */,
 				B68EC74E24DDCDD300E449F1 /* LaunchScreen.storyboard in Resources */,
 				B68EC74B24DDCDD300E449F1 /* Assets.xcassets in Resources */,
 				B68EC74924DDCDD000E449F1 /* Main.storyboard in Resources */,
@@ -288,7 +295,8 @@
 			files = (
 				B68EC75A24DDD17800E449F1 /* Contact.swift in Sources */,
 				B68EC76224DE023500E449F1 /* CreditCard.swift in Sources */,
-				B68EC74624DDCDD000E449F1 /* ContatosViewController.swift in Sources */,
+				B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */,
+				B68EC74624DDCDD000E449F1 /* ContatosTableViewController.swift in Sources */,
 				B68EC74224DDCDD000E449F1 /* AppDelegate.swift in Sources */,
 				B68EC74424DDCDD000E449F1 /* SceneDelegate.swift in Sources */,
 				B68EC77024DE443200E449F1 /* NavigationBar.swift in Sources */,
