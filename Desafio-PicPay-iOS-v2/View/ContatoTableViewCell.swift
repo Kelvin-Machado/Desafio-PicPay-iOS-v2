@@ -16,7 +16,7 @@ class ContatoTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        contatoImagem.layer.cornerRadius = 26
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
