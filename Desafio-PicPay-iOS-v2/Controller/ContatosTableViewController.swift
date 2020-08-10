@@ -11,6 +11,10 @@ import UIKit
 class ContatosTableViewController: UITableViewController {
 
     var contatos: [Contact] = []
+    var contatosFiltro: [Contact] = []
+    var searching = false
+
+    // MARK: - Inicialização
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,7 @@ class ContatosTableViewController: UITableViewController {
     }
 
     // MARK: - Download JSON
+
     func downloadJson() {
         let contatosString = "http://careers.picpay.com/tests/mobdev/users"
         guard let url = URL(string: contatosString) else { return }
@@ -41,18 +46,19 @@ class ContatosTableViewController: UITableViewController {
     }
 
     // MARK: - configurações da tabela
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contatos.count
+        return contatosFiltro.count
     }
 
 // swiftlint:disable force_cast
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("ContatoTableViewCell", owner: self, options: nil)?.first as! ContatoTableViewCell
 
-        cell.username.text = contatos[indexPath.row].username
-        cell.name.text = contatos[indexPath.row].name
+        cell.username.text = contatosFiltro[indexPath.row].username
+        cell.name.text = contatosFiltro[indexPath.row].name
 
-        if let imagemURL = URL(string: contatos[indexPath.row].img) {
+        if let imagemURL = URL(string: contatosFiltro[indexPath.row].img) {
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: imagemURL)
                 if let data = data {
@@ -65,22 +71,27 @@ class ContatosTableViewController: UITableViewController {
         }
         return cell
     }
+// swiftlint:enable force_cast
 
     func loadContatos() {
-        contatos = contatos.sorted { (contato1, contato2) -> Bool in
+        var contatosReload: [Contact] = []
+
+        searching ? (contatosReload = contatosFiltro) : (contatosReload = contatos)
+
+        contatosFiltro = contatosReload.sorted { (contato1, contato2) -> Bool in
             let contatoNome1: String = contato1.name
             let contatoNome2: String = contato2.name
             return (contatoNome1.localizedCaseInsensitiveCompare(contatoNome2) == .orderedAscending)
         }
          tableView.reloadData()
     }
-// swiftlint:enable force_cast
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         76
     }
 
     // MARK: - configurações da tela
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < -35 {
             navigationController?.setNavigationBarHidden(true, animated: true)
@@ -93,4 +104,23 @@ class ContatosTableViewController: UITableViewController {
         return .lightContent
     }
 
+}
+
+// MARK: - SearchBar
+
+extension ContatosTableViewController: UISearchBarDelegate {
+
+    func searchBar( _ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text!.isEmpty {
+            searching = false
+            loadContatos()
+        } else {
+            searching = true
+            contatosFiltro = contatos.filter {
+                $0.name.range(of: searchBar.text!, options: [.caseInsensitive, .diacriticInsensitive]) != nil ||
+                $0.username.range(of: searchBar.text!, options: [.caseInsensitive, .diacriticInsensitive]) != nil
+            }
+        }
+        loadContatos()
+    }
 }
