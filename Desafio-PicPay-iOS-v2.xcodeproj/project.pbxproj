@@ -18,9 +18,11 @@
 		B68EC74E24DDCDD300E449F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68EC74C24DDCDD300E449F1 /* LaunchScreen.storyboard */; };
 		B68EC75A24DDD17800E449F1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC75924DDD17800E449F1 /* Contact.swift */; };
 		B68EC75D24DDFCC600E449F1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B68EC75C24DDFCC600E449F1 /* IQKeyboardManagerSwift */; };
-		B68EC76024DDFCE800E449F1 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = B68EC75F24DDFCE800E449F1 /* TextFieldEffects */; };
 		B68EC76224DE023500E449F1 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC76124DE023500E449F1 /* CreditCard.swift */; };
 		B68EC77024DE443200E449F1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC76F24DE443200E449F1 /* NavigationBar.swift */; };
+		B690476E24E22C9D004C0869 /* RegistroCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690476D24E22C9D004C0869 /* RegistroCCViewController.swift */; };
+		B690477024E251F9004C0869 /* CadastrarCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690476F24E251F9004C0869 /* CadastrarCCViewController.swift */; };
+		B690477324E26AE8004C0869 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = B690477224E26AE8004C0869 /* SkyFloatingLabelTextField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		B68EC75924DDD17800E449F1 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		B68EC76124DE023500E449F1 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		B68EC76F24DE443200E449F1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		B690476D24E22C9D004C0869 /* RegistroCCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroCCViewController.swift; sourceTree = "<group>"; };
+		B690476F24E251F9004C0869 /* CadastrarCCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadastrarCCViewController.swift; sourceTree = "<group>"; };
 		E604DE9EA3C86DF92A627DB7 /* Pods-Desafio-PicPay-iOS-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desafio-PicPay-iOS-v2.release.xcconfig"; path = "Target Support Files/Pods-Desafio-PicPay-iOS-v2/Pods-Desafio-PicPay-iOS-v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,8 +52,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68EC75D24DDFCC600E449F1 /* IQKeyboardManagerSwift in Frameworks */,
-				B68EC76024DDFCE800E449F1 /* TextFieldEffects in Frameworks */,
 				309A104393084FAEA8E2FF02 /* Pods_Desafio_PicPay_iOS_v2.framework in Frameworks */,
+				B690477324E26AE8004C0869 /* SkyFloatingLabelTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				B68EC74524DDCDD000E449F1 /* ContatosTableViewController.swift */,
+				B690476D24E22C9D004C0869 /* RegistroCCViewController.swift */,
+				B690476F24E251F9004C0869 /* CadastrarCCViewController.swift */,
 				B68EC76C24DE3DA200E449F1 /* Others */,
 			);
 			path = Controller;
@@ -171,7 +177,7 @@
 			name = "Desafio-PicPay-iOS-v2";
 			packageProductDependencies = (
 				B68EC75C24DDFCC600E449F1 /* IQKeyboardManagerSwift */,
-				B68EC75F24DDFCE800E449F1 /* TextFieldEffects */,
+				B690477224E26AE8004C0869 /* SkyFloatingLabelTextField */,
 			);
 			productName = "Desafio-PicPay-iOS-v2";
 			productReference = B68EC73E24DDCDD000E449F1 /* Desafio-PicPay-iOS-v2.app */;
@@ -203,7 +209,7 @@
 			mainGroup = B68EC73524DDCDD000E449F1;
 			packageReferences = (
 				B68EC75B24DDFCC600E449F1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				B68EC75E24DDFCE800E449F1 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				B690477124E26AE8004C0869 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
 			);
 			productRefGroup = B68EC73F24DDCDD000E449F1 /* Products */;
 			projectDirPath = "";
@@ -293,9 +299,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B690477024E251F9004C0869 /* CadastrarCCViewController.swift in Sources */,
 				B68EC75A24DDD17800E449F1 /* Contact.swift in Sources */,
 				B68EC76224DE023500E449F1 /* CreditCard.swift in Sources */,
 				B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */,
+				B690476E24E22C9D004C0869 /* RegistroCCViewController.swift in Sources */,
 				B68EC74624DDCDD000E449F1 /* ContatosTableViewController.swift in Sources */,
 				B68EC74224DDCDD000E449F1 /* AppDelegate.swift in Sources */,
 				B68EC74424DDCDD000E449F1 /* SceneDelegate.swift in Sources */,
@@ -509,12 +517,12 @@
 				minimumVersion = 6.5.6;
 			};
 		};
-		B68EC75E24DDFCE800E449F1 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+		B690477124E26AE8004C0869 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/raulriera/TextFieldEffects.git";
+			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.0;
+				minimumVersion = 3.8.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -525,10 +533,10 @@
 			package = B68EC75B24DDFCC600E449F1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
-		B68EC75F24DDFCE800E449F1 /* TextFieldEffects */ = {
+		B690477224E26AE8004C0869 /* SkyFloatingLabelTextField */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B68EC75E24DDFCE800E449F1 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
+			package = B690477124E26AE8004C0869 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
+			productName = SkyFloatingLabelTextField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

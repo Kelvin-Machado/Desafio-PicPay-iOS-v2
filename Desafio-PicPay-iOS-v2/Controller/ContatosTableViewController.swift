@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ContatosTableViewController: UITableViewController {
+
+    let realm = try! Realm()
+    var creditcard: Results<CreditCard>?
 
     var contatos: [Contact] = []
     var contatosFiltro: [Contact] = []
@@ -18,8 +22,8 @@ class ContatosTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
         downloadJson()
+        setupNavBarLarge()
     }
 
     // MARK: - Download JSON
@@ -71,11 +75,25 @@ class ContatosTableViewController: UITableViewController {
         }
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        76
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if loadCreditCard() {
+            print("CC registrado")
+        } else {
+            print("sem CC")
+            performSegue(withIdentifier: "goToRegistroCC", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 // swiftlint:enable force_cast
 
     func loadContatos() {
         var contatosReload: [Contact] = []
-
         searching ? (contatosReload = contatosFiltro) : (contatosReload = contatos)
 
         contatosFiltro = contatosReload.sorted { (contato1, contato2) -> Bool in
@@ -86,8 +104,13 @@ class ContatosTableViewController: UITableViewController {
          tableView.reloadData()
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        76
+    func loadCreditCard() -> Bool {
+        creditcard = realm.objects(CreditCard.self)
+        if creditcard!.isEmpty {
+            return false
+        } else {
+            return true
+        }
     }
 
     // MARK: - configurações da tela
