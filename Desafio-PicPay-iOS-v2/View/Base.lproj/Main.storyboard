@@ -13,7 +13,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vob-iJ-dFj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="OZ7-DR-5ce">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="98.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.11375031620000001" green="0.11763120439999999" blue="0.12549012900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,7 +150,7 @@
             <objects>
                 <viewController id="YhE-mm-XMl" customClass="CadastrarCCViewController" customModule="Desafio_PicPay_iOS_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a7p-qL-nNl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="469.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="J64-Ur-rlj" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
@@ -255,33 +255,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5m-gh-aYT">
-                                <rect key="frame" x="20" y="399.5" width="280" height="50"/>
-                                <color key="backgroundColor" red="0.12941176469999999" green="0.75294117650000003" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="n1h-xc-ARo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="Salvar">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.11375031620000001" green="0.11763120439999999" blue="0.12549012900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ygw-2K-fi0" firstAttribute="trailing" secondItem="J64-Ur-rlj" secondAttribute="trailing" constant="20" id="6SN-1N-8bt"/>
-                            <constraint firstItem="S5m-gh-aYT" firstAttribute="leading" secondItem="ygw-2K-fi0" secondAttribute="leading" constant="20" id="7A3-hk-0X0"/>
                             <constraint firstItem="EbQ-w8-9nW" firstAttribute="leading" secondItem="ygw-2K-fi0" secondAttribute="leading" constant="20" id="7pq-YB-St9"/>
                             <constraint firstItem="J64-Ur-rlj" firstAttribute="top" secondItem="ygw-2K-fi0" secondAttribute="top" constant="60" id="BgP-b5-mnW"/>
                             <constraint firstItem="ygw-2K-fi0" firstAttribute="trailing" secondItem="4DA-M9-g1O" secondAttribute="trailing" constant="20" id="FcI-Rf-XLr"/>
-                            <constraint firstItem="ygw-2K-fi0" firstAttribute="bottom" secondItem="S5m-gh-aYT" secondAttribute="bottom" constant="20" id="GJk-5H-bO3"/>
                             <constraint firstItem="ygw-2K-fi0" firstAttribute="trailing" secondItem="6aD-lN-iXX" secondAttribute="trailing" constant="20" id="H79-rm-9ol"/>
                             <constraint firstItem="EbQ-w8-9nW" firstAttribute="top" secondItem="6aD-lN-iXX" secondAttribute="bottom" constant="40" id="PaQ-Sa-Cju"/>
                             <constraint firstItem="J64-Ur-rlj" firstAttribute="leading" secondItem="ygw-2K-fi0" secondAttribute="leading" constant="20" id="QBp-Xz-set"/>
                             <constraint firstItem="4DA-M9-g1O" firstAttribute="top" secondItem="6aD-lN-iXX" secondAttribute="bottom" constant="40" id="Wuu-Sq-aDN"/>
                             <constraint firstItem="6aD-lN-iXX" firstAttribute="leading" secondItem="ygw-2K-fi0" secondAttribute="leading" constant="20" id="cC5-kd-Nz0"/>
                             <constraint firstItem="6aD-lN-iXX" firstAttribute="top" secondItem="J64-Ur-rlj" secondAttribute="bottom" constant="40" id="ckk-QB-Nec"/>
-                            <constraint firstItem="ygw-2K-fi0" firstAttribute="trailing" secondItem="S5m-gh-aYT" secondAttribute="trailing" constant="20" id="lzb-KP-Nsp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ygw-2K-fi0"/>
                     </view>
@@ -290,7 +276,6 @@
                         <outlet property="cvv" destination="4DA-M9-g1O" id="Dc2-Qt-fjt"/>
                         <outlet property="nomeTitular" destination="6aD-lN-iXX" id="zmw-Xj-OMK"/>
                         <outlet property="numCartao" destination="J64-Ur-rlj" id="IZO-R2-KUV"/>
-                        <outlet property="salvarBtn" destination="S5m-gh-aYT" id="PUZ-af-n5t"/>
                         <outlet property="vencimento" destination="EbQ-w8-9nW" id="sww-MR-zaT"/>
                     </connections>
                 </viewController>
