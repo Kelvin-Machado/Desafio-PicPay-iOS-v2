@@ -22,8 +22,8 @@ class ContatosTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         downloadJson()
-        setupNavBarLarge()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
@@ -84,9 +84,11 @@ class ContatosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if loadCreditCard() {
-            print("CC registrado")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "pagamentoVC") as? PagamentoViewController
+            vc?.imagem = contatosFiltro[indexPath.row].img
+            vc?.username = contatosFiltro[indexPath.row].username
+            self.navigationController?.pushViewController(vc!, animated: true)
         } else {
-            print("sem CC")
             performSegue(withIdentifier: "goToRegistroCC", sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         }

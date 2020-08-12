@@ -25,6 +25,7 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         numCartao.delegate = self
         nomeTitular.delegate = self
         vencimento.delegate = self
@@ -103,6 +104,4 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         constraintBtnBottom.isActive = true
         constraintBtnTop.isActive = false
     }
-
-// MARK: - salvar
 }

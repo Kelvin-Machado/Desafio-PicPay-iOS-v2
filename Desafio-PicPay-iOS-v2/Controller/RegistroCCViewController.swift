@@ -14,7 +14,7 @@ class RegistroCCViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBarLarge()
+        setupNavBar()
         CadastrarBtn.layer.cornerRadius = 25
     }
 }
