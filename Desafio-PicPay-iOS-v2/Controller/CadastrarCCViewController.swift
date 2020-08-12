@@ -40,7 +40,11 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         do {
 
             try realm.write {
-                realm.add(creditcard, update: .modified)
+                if realm.isEmpty {
+                    realm.add(creditcard)
+                } else {
+                    realm.add(creditcard, update: .modified)
+                }
             }
         } catch {
             print("Error saving CreditCard \(error)")
@@ -59,18 +63,15 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
     }
     @objc func saveBtnTapped() {
         let newCreditCard = CreditCard()
+        newCreditCard.Id = 0
         newCreditCard.numCartao = numCartao.text!
         newCreditCard.nomeTitular = nomeTitular.text!
-
-        let dateFormater = DateFormatter()
-        dateFormater.locale = Locale(identifier: "pt_BR")
-        dateFormater.dateFormat = "MM/YY"
-        dateFormater.dateStyle = .short
-
-        let startDate = dateFormater.date(from: vencimento.text!)
-        print(startDate!)
-        newCreditCard.vencimento = startDate
         newCreditCard.cvv = Int(cvv.text!)!
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/yy"
+        let enteredDate = dateFormatter.date(from: vencimento.text!)
+        newCreditCard.vencimento = enteredDate
 
         self.save(creditcard: newCreditCard)
         print("Botão salvar pressionado")

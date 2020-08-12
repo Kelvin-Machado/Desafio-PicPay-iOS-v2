@@ -24,6 +24,7 @@ class ContatosTableViewController: UITableViewController {
         super.viewDidLoad()
         downloadJson()
         setupNavBarLarge()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
     // MARK: - Download JSON

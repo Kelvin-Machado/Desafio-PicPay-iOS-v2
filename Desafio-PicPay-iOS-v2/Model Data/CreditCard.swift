@@ -10,8 +10,12 @@ import Foundation
 import RealmSwift
 
 class CreditCard: Object {
+    @objc dynamic var Id: Int = 0
     @objc dynamic var numCartao: String = ""
     @objc dynamic var cvv: Int = 0
     @objc dynamic var vencimento: Date?
     @objc dynamic var nomeTitular: String = ""
+    override static func primaryKey() -> String? {
+        return "Id"
+    }
 }
