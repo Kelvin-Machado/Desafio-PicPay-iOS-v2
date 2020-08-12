@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		309A104393084FAEA8E2FF02 /* Pods_Desafio_PicPay_iOS_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */; };
+		B66A80F724E3952200A3BC4E /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A80F624E3952200A3BC4E /* TextFormatter.swift */; };
 		B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */; };
 		B66DB23724DFDDCF00DE8012 /* ContatoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B66DB23524DFDDCF00DE8012 /* ContatoTableViewCell.xib */; };
 		B68EC74224DDCDD000E449F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68EC74124DDCDD000E449F1 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		66C7BEDD09D2B0CB382847E2 /* Pods-Desafio-PicPay-iOS-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desafio-PicPay-iOS-v2.debug.xcconfig"; path = "Target Support Files/Pods-Desafio-PicPay-iOS-v2/Pods-Desafio-PicPay-iOS-v2.debug.xcconfig"; sourceTree = "<group>"; };
 		707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desafio_PicPay_iOS_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B66A80F624E3952200A3BC4E /* TextFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatter.swift; sourceTree = "<group>"; };
 		B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoTableViewCell.swift; sourceTree = "<group>"; };
 		B66DB23524DFDDCF00DE8012 /* ContatoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContatoTableViewCell.xib; sourceTree = "<group>"; };
 		B68EC73E24DDCDD000E449F1 /* Desafio-PicPay-iOS-v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Desafio-PicPay-iOS-v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				B68EC76F24DE443200E449F1 /* NavigationBar.swift */,
+				B66A80F624E3952200A3BC4E /* TextFormatter.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				B68EC76224DE023500E449F1 /* CreditCard.swift in Sources */,
 				B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */,
 				B690476E24E22C9D004C0869 /* RegistroCCViewController.swift in Sources */,
+				B66A80F724E3952200A3BC4E /* TextFormatter.swift in Sources */,
 				B68EC74624DDCDD000E449F1 /* ContatosTableViewController.swift in Sources */,
 				B68EC74224DDCDD000E449F1 /* AppDelegate.swift in Sources */,
 				B68EC74424DDCDD000E449F1 /* SceneDelegate.swift in Sources */,

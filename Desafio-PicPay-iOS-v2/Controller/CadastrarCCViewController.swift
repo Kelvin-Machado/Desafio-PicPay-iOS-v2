@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 import SkyFloatingLabelTextField
 
 class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
 
     let saveBtn = UIButton()
+    let realm = try! Realm()
 
     @IBOutlet weak var numCartao: SkyFloatingLabelTextField!
     @IBOutlet weak var nomeTitular: SkyFloatingLabelTextField!
@@ -23,11 +25,29 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupSaveButton()
+        numCartao.delegate = self
+        nomeTitular.delegate = self
         vencimento.delegate = self
         cvv.delegate = self
+
+        numCartao.addTarget(self, action: #selector(didChangeText(textField:)), for: .editingChanged)
+
+        setupSaveButton()
     }
+// MARK: - Métodos de manipulação de dados
+
+    func save(creditcard: CreditCard) {
+        do {
+
+            try realm.write {
+                realm.add(creditcard, update: .modified)
+            }
+        } catch {
+            print("Error saving CreditCard \(error)")
+        }
+    }
+
+// MARK: - Configura Botão
 
     func setupSaveButton() {
         saveBtn.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 16)
@@ -38,7 +58,21 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         setsaveBtnConstraints()
     }
     @objc func saveBtnTapped() {
+        let newCreditCard = CreditCard()
+        newCreditCard.numCartao = numCartao.text!
+        newCreditCard.nomeTitular = nomeTitular.text!
 
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "pt_BR")
+        dateFormater.dateFormat = "MM/YY"
+        dateFormater.dateStyle = .short
+
+        let startDate = dateFormater.date(from: vencimento.text!)
+        print(startDate!)
+        newCreditCard.vencimento = startDate
+        newCreditCard.cvv = Int(cvv.text!)!
+
+        self.save(creditcard: newCreditCard)
         print("Botão salvar pressionado")
     }
 
@@ -55,7 +89,7 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
 
         constraintBtnBottom = saveBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         constraintBtnBottom.isActive = true
-        constraintBtnTop = saveBtn.topAnchor.constraint(equalTo: vencimento.bottomAnchor, constant: 20)
+        constraintBtnTop = saveBtn.topAnchor.constraint(equalTo: vencimento.bottomAnchor, constant: 30)
         constraintBtnTop.isActive = false
     }
 
@@ -69,6 +103,5 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         constraintBtnTop.isActive = false
     }
 
-// MARK: - Keyboard
-
+// MARK: - salvar
 }

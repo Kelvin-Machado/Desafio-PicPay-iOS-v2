@@ -10,8 +10,8 @@ import Foundation
 import RealmSwift
 
 class CreditCard: Object {
-    @objc dynamic var cardNumb: String = ""
+    @objc dynamic var numCartao: String = ""
     @objc dynamic var cvv: Int = 0
-    @objc dynamic var expiryDate: Date?
-    @objc dynamic var holderName: String = ""
+    @objc dynamic var vencimento: Date?
+    @objc dynamic var nomeTitular: String = ""
 }
