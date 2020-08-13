@@ -26,7 +26,7 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
+        setupNewNavBar()
         carregaDados()
         setupSaveButton()
         valor.delegate = self

@@ -13,6 +13,7 @@ class ContatosTableViewController: UITableViewController {
 
     let realm = try! Realm()
     var creditcard: Results<CreditCard>?
+    static var pagVC = PagamentoViewController()
 
     var contatos: [Contact] = []
     var contatosFiltro: [Contact] = []
@@ -82,12 +83,13 @@ class ContatosTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ContatosTableViewController.pagVC =
+            (storyboard?.instantiateViewController(withIdentifier: "pagamentoVC") as? PagamentoViewController)!
+        ContatosTableViewController.pagVC.imagem = contatosFiltro[indexPath.row].img
+        ContatosTableViewController.pagVC.username = contatosFiltro[indexPath.row].username
 
         if loadCreditCard() {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "pagamentoVC") as? PagamentoViewController
-            vc?.imagem = contatosFiltro[indexPath.row].img
-            vc?.username = contatosFiltro[indexPath.row].username
-            self.navigationController?.pushViewController(vc!, animated: true)
+            self.navigationController?.pushViewController(ContatosTableViewController.pagVC, animated: true)
         } else {
             performSegue(withIdentifier: "goToRegistroCC", sender: self)
             tableView.deselectRow(at: indexPath, animated: true)

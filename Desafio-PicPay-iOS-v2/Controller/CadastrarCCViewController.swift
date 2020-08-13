@@ -31,6 +31,11 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         vencimento.delegate = self
         cvv.delegate = self
 
+        numCartao.text = "1111 1111 1111 1111"
+        nomeTitular.text = "Arthur Morgan"
+        vencimento.text = "12/23"
+        cvv.text = "123"
+
         numCartao.addTarget(self, action: #selector(didChangeText(textField:)), for: .editingChanged)
 
         setupSaveButton()
@@ -75,7 +80,7 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         newCreditCard.vencimento = enteredDate
 
         self.save(creditcard: newCreditCard)
-        print("Botão salvar pressionado")
+        self.navigationController?.pushViewController(ContatosTableViewController.pagVC, animated: true)
     }
 
     func  setsaveBtnConstraints() {
