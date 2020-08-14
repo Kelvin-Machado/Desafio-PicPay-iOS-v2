@@ -80,7 +80,12 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         newCreditCard.vencimento = enteredDate
 
         self.save(creditcard: newCreditCard)
-        self.navigationController?.pushViewController(ContatosTableViewController.pagVC, animated: true)
+        let previousVC = "telaCadastro"
+        if PagamentoViewController.nomeTela == previousVC {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.navigationController?.pushViewController(ContatosTableViewController.pagVC, animated: true)
+        }
     }
 
     func  setsaveBtnConstraints() {

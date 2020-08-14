@@ -87,6 +87,7 @@ class ContatosTableViewController: UITableViewController {
             (storyboard?.instantiateViewController(withIdentifier: "pagamentoVC") as? PagamentoViewController)!
         ContatosTableViewController.pagVC.imagem = contatosFiltro[indexPath.row].img
         ContatosTableViewController.pagVC.username = contatosFiltro[indexPath.row].username
+        ContatosTableViewController.pagVC.idContato = contatosFiltro[indexPath.row].id
 
         if loadCreditCard() {
             self.navigationController?.pushViewController(ContatosTableViewController.pagVC, animated: true)

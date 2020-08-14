@@ -26,6 +26,7 @@ extension UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.isNavigationBarHidden = false
         navigationItem.hidesBackButton = true
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             let customBackButton = UIBarButtonItem(image: UIImage(named: "backArrow"),
                                                    style: .plain, target: self,
                                                    action: #selector(backAction(sender:)))

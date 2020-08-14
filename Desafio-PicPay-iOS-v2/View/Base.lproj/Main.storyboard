@@ -13,7 +13,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vob-iJ-dFj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="OZ7-DR-5ce">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="98.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.11375031620000001" green="0.11763120439999999" blue="0.12549012900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		309A104393084FAEA8E2FF02 /* Pods_Desafio_PicPay_iOS_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */; };
+		B608051524E5FE3A002964DB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B608051424E5FE3A002964DB /* Alamofire */; };
 		B66A80F724E3952200A3BC4E /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A80F624E3952200A3BC4E /* TextFormatter.swift */; };
 		B66A80F924E3CDCB00A3BC4E /* PagamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A80F824E3CDCB00A3BC4E /* PagamentoViewController.swift */; };
 		B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */; };
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68EC75D24DDFCC600E449F1 /* IQKeyboardManagerSwift in Frameworks */,
+				B608051524E5FE3A002964DB /* Alamofire in Frameworks */,
 				309A104393084FAEA8E2FF02 /* Pods_Desafio_PicPay_iOS_v2.framework in Frameworks */,
 				B690477324E26AE8004C0869 /* SkyFloatingLabelTextField in Frameworks */,
 			);
@@ -184,6 +186,7 @@
 			packageProductDependencies = (
 				B68EC75C24DDFCC600E449F1 /* IQKeyboardManagerSwift */,
 				B690477224E26AE8004C0869 /* SkyFloatingLabelTextField */,
+				B608051424E5FE3A002964DB /* Alamofire */,
 			);
 			productName = "Desafio-PicPay-iOS-v2";
 			productReference = B68EC73E24DDCDD000E449F1 /* Desafio-PicPay-iOS-v2.app */;
@@ -216,6 +219,7 @@
 			packageReferences = (
 				B68EC75B24DDFCC600E449F1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				B690477124E26AE8004C0869 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
+				B608051324E5FE3A002964DB /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B68EC73F24DDCDD000E449F1 /* Products */;
 			projectDirPath = "";
@@ -517,6 +521,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B608051324E5FE3A002964DB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
 		B68EC75B24DDFCC600E449F1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -536,6 +548,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B608051424E5FE3A002964DB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B608051324E5FE3A002964DB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		B68EC75C24DDFCC600E449F1 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B68EC75B24DDFCC600E449F1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
