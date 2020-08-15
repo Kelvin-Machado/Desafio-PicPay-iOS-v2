@@ -124,46 +124,63 @@ extension PagamentoViewController {
 
     func aproveTransactions() {
 
+        var contatoPagar: Transaction!
+        
         creditCard = realm.objects(CreditCard.self)
         let date = converteDataRealm(creditCard![0].vencimento!.description)
-        
-        var valorDouble = 0.0
-        if  (Double(valor.text!) != nil) {
-            valorDouble = Double(valor.text!)!
-        }
-        let parameters = PaymentRequest(card_number: creditCard?[0].numCartao.replacingOccurrences(of: " ", with: ""),
-                                        cvv: creditCard![0].cvv,
-                                        value: valorDouble,
-                                        expiry_date: date,
-                                    destination_user_id: idContato)
 
-        AF.request("http://careers.picpay.com/tests/mobdev/transaction", method: .post, parameters: parameters, encoder: JSONParameterEncoder.default).response { response in
-            switch response.result {
-            case .success:
-                let status = "Aprovada"
-                let dados = response.self.debugDescription
-                print(dados)
+        let parameters: Parameters = [
+            "card_number": creditCard![0].numCartao.replacingOccurrences(of: " ", with: ""),
+            "cvv": creditCard![0].cvv,
+            "value": Double(valor.text!) ?? 0.0,
+            "expiry_date": date,
+            "destination_user_id": idContato
+        ]
 
-//                if dados.contains(status){
-//                    let recibo = ViewController()
-//                    ViewController.reciboAppear = true
-//                    self.navigationController?.pushViewController(recibo, animated: true)
-//                }else{
-//                    self.showAlert()
-//                }
+        let url = "http://careers.picpay.com/tests/mobdev/transaction"
 
-            case .failure:
-                print("Erro")
-            }
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+            .validate(statusCode: 200 ..< 299).responseJSON { AFdata in
 
-        }
+                do {
+                    guard let jsonObject = try JSONSerialization.jsonObject(with: AFdata.data!) as? [String: Any] else {
+                        print("Erro: Não foi possível converter dados para JSON object")
+                        return
+                    }
+                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+                        else {
+                            print("Erro: Não pôde converter JSON object para Pretty JSON data")
+                        return
+                    }
+                    guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                        print("Erro ao converter JSON em String")
+                        return
+                    }
+
+                    let data = prettyPrintedJson.data(using: .utf8)!
+                    do {
+                        let transactionResponse = try JSONDecoder().decode(Transaction.self, from: data)
+                        print(transactionResponse)
+                        contatoPagar = transactionResponse
+                        print(contatoPagar.transaction.status)
+                        print(contatoPagar.transaction.success)
+                        print(contatoPagar.transaction.destinationUser.name)
+                    } catch {
+                        print(error)
+                    }
+                } catch {
+                    print("Error: Tentando converter JSON data para string")
+                    return
+                }
+            }.self
 
     }
 
     func showAlert() {
-        let alert = UIAlertController(title: "Oops!!!!", message: " Ocorreu um erro! \n Por favor, verifique os dados do Cartão de Crédito", preferredStyle: .alert)
+        let msg = "Ocorreu um erro! \n Por favor, verifique os dados do Cartão de Crédito"
+        let alert = UIAlertController(title: "Oops!!!!", message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-              switch action.style{
+              switch action.style {
               case .default:
                     print("default")
 
@@ -172,7 +189,6 @@ extension PagamentoViewController {
 
               case .destructive:
                     print("destructive")
-
 
               @unknown default:
                 fatalError()

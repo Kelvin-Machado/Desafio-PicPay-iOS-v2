@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		309A104393084FAEA8E2FF02 /* Pods_Desafio_PicPay_iOS_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */; };
 		B608051524E5FE3A002964DB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B608051424E5FE3A002964DB /* Alamofire */; };
+		B6642D0524E7AE85002DBFC7 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6642D0424E7AE85002DBFC7 /* Transaction.swift */; };
 		B66A80F724E3952200A3BC4E /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A80F624E3952200A3BC4E /* TextFormatter.swift */; };
 		B66A80F924E3CDCB00A3BC4E /* PagamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66A80F824E3CDCB00A3BC4E /* PagamentoViewController.swift */; };
 		B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		66C7BEDD09D2B0CB382847E2 /* Pods-Desafio-PicPay-iOS-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desafio-PicPay-iOS-v2.debug.xcconfig"; path = "Target Support Files/Pods-Desafio-PicPay-iOS-v2/Pods-Desafio-PicPay-iOS-v2.debug.xcconfig"; sourceTree = "<group>"; };
 		707FC7558D302943DB0924C4 /* Pods_Desafio_PicPay_iOS_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desafio_PicPay_iOS_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6642D0424E7AE85002DBFC7 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		B66A80F624E3952200A3BC4E /* TextFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatter.swift; sourceTree = "<group>"; };
 		B66A80F824E3CDCB00A3BC4E /* PagamentoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagamentoViewController.swift; sourceTree = "<group>"; };
 		B66DB23424DFDDCF00DE8012 /* ContatoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				B68EC75924DDD17800E449F1 /* Contact.swift */,
 				B68EC76124DE023500E449F1 /* CreditCard.swift */,
+				B6642D0424E7AE85002DBFC7 /* Transaction.swift */,
 			);
 			path = "Model Data";
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				B690477024E251F9004C0869 /* CadastrarCCViewController.swift in Sources */,
 				B68EC75A24DDD17800E449F1 /* Contact.swift in Sources */,
+				B6642D0524E7AE85002DBFC7 /* Transaction.swift in Sources */,
 				B68EC76224DE023500E449F1 /* CreditCard.swift in Sources */,
 				B66DB23624DFDDCF00DE8012 /* ContatoTableViewCell.swift in Sources */,
 				B690476E24E22C9D004C0869 /* RegistroCCViewController.swift in Sources */,
