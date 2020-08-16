@@ -29,6 +29,7 @@ class ReciboViewController: UIViewController {
 
     // MARK: - Carrega dados
     func loadData() {
+
         let img = dadosRecibo.transaction.destinationUser.img
         if let imagemURL = URL(string: img) {
             DispatchQueue.global().async {
@@ -49,14 +50,19 @@ class ReciboViewController: UIViewController {
         valorCartao.text = value
         valorTotal.text = value
     }
+
     func getDate (timestamp: Int) -> String {
+
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        return ("\(date.get(.day))/\(date.get(.month))/\(date.get(.year)) às \(date.get(.hour)):\(date.get(.minute))")
+    }
+}
+
+extension Date {
+
+    func get(_ type: Calendar.Component) -> String {
         let calendar = Calendar.current
-        let day = calendar.component(.day, from: date)
-        let mounth = calendar.component(.month, from: date)
-        let year = calendar.component(.year, from: date)
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        return ("\(day)/\(mounth)/\(year) às \(hour):\(minute)")
+        let t = calendar.component(type, from: self)
+        return (t < 10 ? "0\(t)" : t.description)
     }
 }

@@ -138,7 +138,7 @@ extension PagamentoViewController {
         let parameters: Parameters = [
             "card_number": creditCard![0].numCartao.replacingOccurrences(of: " ", with: ""),
             "cvv": creditCard![0].cvv,
-            "value": Double(valor.text!) ?? 0.0,
+            "value": valor.text!.toDecimalWithAutoLocale() ?? 0.0,
             "expiry_date": date,
             "destination_user_id": idContato
         ]

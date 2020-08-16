@@ -10,7 +10,7 @@ import UIKit
 
 extension CadastrarCCViewController {
 
-// MARK: - Formats Credit Card Number
+// MARK: - Formata espaços entre números do cartão de crédito
     func modifyCreditCardString(creditCardString: String) -> String {
         let trimmedString = creditCardString.components(separatedBy: .whitespaces).joined()
         let arrOfCharacters = Array(trimmedString)
@@ -35,12 +35,12 @@ extension CadastrarCCViewController {
 
         let newLength = (textField.text ?? "").count + string.count - range.length
 
-//        Formats Credit Card Number Length
+//        Formata quantidade de digitos no cartão de crédito
         if textField == numCartao {
              return newLength <= 19
          }
 
-//        Formats Expiry Date
+//        Formata data de vencimento
                if textField == vencimento {
                    if vencimento.text?.count == 2 {
                        if !(string == "") {
@@ -61,13 +61,14 @@ extension CadastrarCCViewController {
 
 extension String {
 
-//     formats text for currency textField
+//     Formata texto para o campo de valores
     func currencyInputFormatting() -> String {
 
         var number: NSNumber!
         let formatter = NumberFormatter()
         formatter.numberStyle = .currencyAccounting
         formatter.currencySymbol = ""
+        formatter.locale = Locale(identifier: "pt_BR")
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
 
@@ -81,11 +82,32 @@ extension String {
         let double = (amountWithPrefix as NSString).doubleValue
         number = NSNumber(value: (double / 100))
 
-        // if first number is 0 or all numbers were deleted
+        // se o primeiro número for zero, ou todos forem apagados
         guard number != 0 as NSNumber else {
             return ""
         }
 
         return formatter.string(from: number)!
+    }
+}
+
+extension String {
+    func toDecimalWithAutoLocale() -> Decimal? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+
+        formatter.locale = Locale(identifier: "pt_BR")
+
+        if let number = formatter.number(from: self) {
+           return number.decimalValue
+        }
+        return nil
+    }
+
+    func toDoubleWithAutoLocale() -> Double? {
+        guard let decimal = self.toDecimalWithAutoLocale() else {
+            return nil
+        }
+        return NSDecimalNumber(decimal: decimal).doubleValue
     }
 }
