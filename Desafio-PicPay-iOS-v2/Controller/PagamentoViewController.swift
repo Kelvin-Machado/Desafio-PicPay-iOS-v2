@@ -45,6 +45,8 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
         PagamentoViewController.nomeTela = "telaCadastro"
     }
 
+    // MARK: - Configura cor do simbolo
+
     @objc func myTextFieldDidChange(_ textField: UITextField) {
         if let amountString = valor.text?.currencyInputFormatting() {
             textField.text = amountString
@@ -54,10 +56,6 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
         } else {
             simbolo.textColor = #colorLiteral(red: 0, green: 0.7665649056, blue: 0.3102965951, alpha: 1)
         }
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-
     }
 
     // MARK: - Informação do contato
@@ -168,19 +166,7 @@ extension PagamentoViewController {
                     let data = prettyPrintedJson.data(using: .utf8)!
                     do {
                         let transactionResponse = try JSONDecoder().decode(Transaction.self, from: data)
-//                        print(transactionResponse)
-//                        contatoPagar = transactionResponse
-//                        print(contatoPagar.transaction.status)
-//
-//                        let dataFormatada = self.getDate(timestamp: contatoPagar.transaction.timestamp)
-//                        print(dataFormatada)
-//
-//                        print(contatoPagar.transaction.destinationUser.name)
-
-                        PagamentoViewController.reciboVC = (self.storyboard?.instantiateViewController(withIdentifier: "Recibo") as? ReciboViewController)!
-                        PagamentoViewController.reciboVC.dadosRecibo = transactionResponse
-
-                        self.navigationController?.pushViewController(PagamentoViewController.reciboVC, animated: true)
+                        self.resultadoTransaction(contatoPagar: transactionResponse)
                     } catch {
                         print(error)
                     }
@@ -189,7 +175,19 @@ extension PagamentoViewController {
                     return
                 }
             }.self
+    }
 
+    func resultadoTransaction(contatoPagar: Transaction) {
+        switch contatoPagar.transaction.success {
+        case true:
+            PagamentoViewController.reciboVC =
+                (self.storyboard?.instantiateViewController(withIdentifier: "Recibo") as? ReciboViewController)!
+            PagamentoViewController.reciboVC.dadosRecibo = contatoPagar
+            navigationController?.popToRootViewController(animated: true)
+
+        case false:
+            showAlert()
+        }
     }
 
     func showAlert() {
@@ -210,11 +208,8 @@ extension PagamentoViewController {
                 fatalError()
             }}))
         self.present(alert, animated: true, completion: nil)
-
-//        let recibo = ContatosTableViewController
-//        ViewController.reciboAppear = false
-//        self.navigationController?.pushViewController(recibo, animated: true)
     }
+
     func converteDataRealm(_ dateString: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")

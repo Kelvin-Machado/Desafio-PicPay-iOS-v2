@@ -21,9 +21,13 @@ class ReciboViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.08235258609, green: 0.08235386759, blue: 0.08663553745, alpha: 1)
         loadData()
     }
 
+    // MARK: - Carrega dados
     func loadData() {
         let img = dadosRecibo.transaction.destinationUser.img
         if let imagemURL = URL(string: img) {
@@ -38,6 +42,12 @@ class ReciboViewController: UIViewController {
                 }
             }
         }
+        username.text = dadosRecibo.transaction.destinationUser.username
+        dataFormatada.text = getDate(timestamp: dadosRecibo.transaction.timestamp)
+        numeroTransacao.text = "Transação: \(dadosRecibo.transaction.id)"
+        let value = "R$ \(dadosRecibo.transaction.value)"
+        valorCartao.text = value
+        valorTotal.text = value
     }
     func getDate (timestamp: Int) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
@@ -49,5 +59,4 @@ class ReciboViewController: UIViewController {
         let minute = calendar.component(.minute, from: date)
         return ("\(day)/\(mounth)/\(year) às \(hour):\(minute)")
     }
-    // MARK: - Navigation
 }

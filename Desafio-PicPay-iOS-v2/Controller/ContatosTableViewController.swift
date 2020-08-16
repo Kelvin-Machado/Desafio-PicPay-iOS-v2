@@ -11,6 +11,8 @@ import RealmSwift
 
 class ContatosTableViewController: UITableViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+
     let realm = try! Realm()
     var creditcard: Results<CreditCard>?
     static var pagVC = PagamentoViewController()
@@ -23,9 +25,20 @@ class ContatosTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         setupNavBar()
         downloadJson()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        searchBar.text = ""
+        searching = false
+        self.tableView.deselectSelectedRow(animated: true)
+        loadContatos()
+        if PagamentoViewController.reciboVC.dadosRecibo != nil {
+              self.present(PagamentoViewController.reciboVC, animated: true, completion: nil)
+        }
     }
 
     // MARK: - Download JSON
@@ -93,7 +106,6 @@ class ContatosTableViewController: UITableViewController {
             self.navigationController?.pushViewController(ContatosTableViewController.pagVC, animated: true)
         } else {
             performSegue(withIdentifier: "goToRegistroCC", sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 // swiftlint:enable force_cast
@@ -142,7 +154,6 @@ extension ContatosTableViewController: UISearchBarDelegate {
     func searchBar( _ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text!.isEmpty {
             searching = false
-            loadContatos()
         } else {
             searching = true
             contatosFiltro = contatos.filter {
@@ -152,4 +163,14 @@ extension ContatosTableViewController: UISearchBarDelegate {
         }
         loadContatos()
     }
+}
+
+extension UITableView {
+
+    func deselectSelectedRow(animated: Bool) {
+        if let indexPathForSelectedRow = self.indexPathForSelectedRow {
+            self.deselectRow(at: indexPathForSelectedRow, animated: animated)
+        }
+    }
+
 }
