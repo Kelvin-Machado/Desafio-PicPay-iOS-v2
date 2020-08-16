@@ -13,6 +13,7 @@ import RealmSwift
 class PagamentoViewController: UIViewController, UITextFieldDelegate {
 
     static var nomeTela = ""
+    static var reciboVC = ReciboViewController()
 
     let pagarBtn = UIButton()
     let realm = try! Realm()
@@ -35,7 +36,7 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setupNewNavBar()
         carregaDados()
-        setupSaveButton()
+        setupBotaoPagar()
         valor.delegate = self
         valor.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -45,10 +46,18 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc func myTextFieldDidChange(_ textField: UITextField) {
-
         if let amountString = valor.text?.currencyInputFormatting() {
             textField.text = amountString
         }
+        if valor.text == "" {
+            simbolo.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        } else {
+            simbolo.textColor = #colorLiteral(red: 0, green: 0.7665649056, blue: 0.3102965951, alpha: 1)
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+
     }
 
     // MARK: - Informação do contato
@@ -71,7 +80,7 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Configura botão
 
-    func setupSaveButton() {
+    func setupBotaoPagar() {
         pagarBtn.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 16)
         pagarBtn.backgroundColor = #colorLiteral(red: 0, green: 0.7958126664, blue: 0.3956114948, alpha: 1)
         pagarBtn.setTitle("Pagar", for: .normal)
@@ -81,7 +90,7 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc func pagarBtnTapped() {
-        aproveTransactions()
+        pagamentoEfetuado()
     }
 
     func  setsaveBtnConstraints() {
@@ -112,6 +121,7 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+// MARK: - Métodos POST
 extension PagamentoViewController {
 
     struct PaymentRequest: Encodable {
@@ -122,10 +132,8 @@ extension PagamentoViewController {
         var destination_user_id: Int!
     }
 
-    func aproveTransactions() {
+    func pagamentoEfetuado() {
 
-        var contatoPagar: Transaction!
-        
         creditCard = realm.objects(CreditCard.self)
         let date = converteDataRealm(creditCard![0].vencimento!.description)
 
@@ -160,11 +168,19 @@ extension PagamentoViewController {
                     let data = prettyPrintedJson.data(using: .utf8)!
                     do {
                         let transactionResponse = try JSONDecoder().decode(Transaction.self, from: data)
-                        print(transactionResponse)
-                        contatoPagar = transactionResponse
-                        print(contatoPagar.transaction.status)
-                        print(contatoPagar.transaction.success)
-                        print(contatoPagar.transaction.destinationUser.name)
+//                        print(transactionResponse)
+//                        contatoPagar = transactionResponse
+//                        print(contatoPagar.transaction.status)
+//
+//                        let dataFormatada = self.getDate(timestamp: contatoPagar.transaction.timestamp)
+//                        print(dataFormatada)
+//
+//                        print(contatoPagar.transaction.destinationUser.name)
+
+                        PagamentoViewController.reciboVC = (self.storyboard?.instantiateViewController(withIdentifier: "Recibo") as? ReciboViewController)!
+                        PagamentoViewController.reciboVC.dadosRecibo = transactionResponse
+
+                        self.navigationController?.pushViewController(PagamentoViewController.reciboVC, animated: true)
                     } catch {
                         print(error)
                     }
