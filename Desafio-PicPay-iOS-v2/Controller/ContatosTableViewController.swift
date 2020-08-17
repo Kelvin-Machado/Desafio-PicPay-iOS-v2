@@ -36,7 +36,7 @@ class ContatosTableViewController: UITableViewController {
         searching = false
         self.tableView.deselectSelectedRow(animated: true)
         loadContatos()
-        if PagamentoViewController.reciboVC.dadosRecibo != nil {
+        if PagamentoViewController.reciboPronto == true {
               self.present(PagamentoViewController.reciboVC, animated: true, completion: nil)
         }
     }

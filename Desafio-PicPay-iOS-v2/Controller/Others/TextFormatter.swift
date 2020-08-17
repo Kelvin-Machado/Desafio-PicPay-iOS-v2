@@ -111,3 +111,13 @@ extension String {
         return NSDecimalNumber(decimal: decimal).doubleValue
     }
 }
+extension UIViewController {
+    func converteDataRealm(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +ssss"
+        let date = dateFormatter.date(from: dateString)
+        dateFormatter.dateFormat = "MM/yy"
+        return dateFormatter.string(from: date!)
+    }
+}

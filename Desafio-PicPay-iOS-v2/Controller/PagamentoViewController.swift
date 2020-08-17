@@ -14,6 +14,7 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
 
     static var nomeTela = ""
     static var reciboVC = ReciboViewController()
+    static var reciboPronto = false
 
     let pagarBtn = UIButton()
     let realm = try! Realm()
@@ -53,8 +54,12 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
         }
         if valor.text == "" {
             simbolo.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+            pagarBtn.backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+            pagarBtn.isEnabled = false
         } else {
             simbolo.textColor = #colorLiteral(red: 0, green: 0.7665649056, blue: 0.3102965951, alpha: 1)
+            pagarBtn.backgroundColor = #colorLiteral(red: 0, green: 0.7958126664, blue: 0.3956114948, alpha: 1)
+            pagarBtn.isEnabled = true
         }
     }
 
@@ -80,7 +85,8 @@ class PagamentoViewController: UIViewController, UITextFieldDelegate {
 
     func setupBotaoPagar() {
         pagarBtn.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 16)
-        pagarBtn.backgroundColor = #colorLiteral(red: 0, green: 0.7958126664, blue: 0.3956114948, alpha: 1)
+        pagarBtn.backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        pagarBtn.isEnabled = false
         pagarBtn.setTitle("Pagar", for: .normal)
         pagarBtn.addTarget(self, action: #selector(pagarBtnTapped), for: .touchUpInside)
         view.addSubview(pagarBtn)
@@ -180,6 +186,7 @@ extension PagamentoViewController {
     func resultadoTransaction(contatoPagar: Transaction) {
         switch contatoPagar.transaction.success {
         case true:
+            PagamentoViewController.reciboPronto = true
             PagamentoViewController.reciboVC =
                 (self.storyboard?.instantiateViewController(withIdentifier: "Recibo") as? ReciboViewController)!
             PagamentoViewController.reciboVC.dadosRecibo = contatoPagar
@@ -208,14 +215,5 @@ extension PagamentoViewController {
                 fatalError()
             }}))
         self.present(alert, animated: true, completion: nil)
-    }
-
-    func converteDataRealm(_ dateString: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +ssss"
-        let date = dateFormatter.date(from: dateString)
-        dateFormatter.dateFormat = "MM/yy"
-        return dateFormatter.string(from: date!)
     }
 }

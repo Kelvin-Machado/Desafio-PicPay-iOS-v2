@@ -25,6 +25,7 @@ class ReciboViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.08235258609, green: 0.08235386759, blue: 0.08663553745, alpha: 1)
         loadData()
+        PagamentoViewController.reciboPronto = false
     }
 
     // MARK: - Carrega dados
@@ -46,9 +47,9 @@ class ReciboViewController: UIViewController {
         username.text = dadosRecibo.transaction.destinationUser.username
         dataFormatada.text = getDate(timestamp: dadosRecibo.transaction.timestamp)
         numeroTransacao.text = "Transação: \(dadosRecibo.transaction.id)"
-        let value = "R$ \(dadosRecibo.transaction.value)"
-        valorCartao.text = value
-        valorTotal.text = value
+        let value = "\(dadosRecibo.transaction.value)".currencyInputFormatting()
+        valorCartao.text = "R$ \(value)"
+        valorTotal.text = "R$ \(value)"
     }
 
     func getDate (timestamp: Int) -> String {

@@ -14,6 +14,7 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
 
     let saveBtn = UIButton()
     let realm = try! Realm()
+    var cartao: Results<CreditCard>?
 
     @IBOutlet weak var numCartao: SkyFloatingLabelTextField!
     @IBOutlet weak var nomeTitular: SkyFloatingLabelTextField!
@@ -30,6 +31,8 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
         nomeTitular.delegate = self
         vencimento.delegate = self
         cvv.delegate = self
+
+        loadSavedCreditCard()
 
         numCartao.addTarget(self, action: #selector(didChangeText(textField:)), for: .editingChanged)
 
@@ -48,9 +51,25 @@ class CadastrarCCViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         } catch {
-            print("Error saving CreditCard \(error)")
+            print("Erro ao salvar cartão de crédito \(error)")
         }
     }
+
+    func loadSavedCreditCard() {
+            do {
+                try realm.write {
+                    if !realm.isEmpty {
+                        cartao = realm.objects(CreditCard.self)
+                        numCartao.text = cartao?[0].numCartao
+                        nomeTitular.text = cartao?[0].nomeTitular
+                        vencimento.text = converteDataRealm(cartao![0].vencimento!.description)
+                        cvv.text = cartao?[0].cvv.description
+                    }
+                }
+            } catch {
+                print("Erro ao carregar cartão de crédito \(error)")
+            }
+        }
 
 // MARK: - Configura Botão
 
