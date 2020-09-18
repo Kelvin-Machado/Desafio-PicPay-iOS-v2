@@ -5,3 +5,17 @@
 # Desafio-PicPay-iOS-v2
 
 Desafio PicPay, refeito usando padrões de projeto, SwiftLint, RealmSwift, Alamofire, SkyFloatingLabelTextField e IQKeyboardManagerSwift
+
+## Telas
+
+1. #### Lista de contatos
+
+<img src="https://media4.giphy.com/media/jQjq2cWEwgX5cZruAU/giphy.webp">
+
+2. #### Cadastro de cartão
+
+<img src="https://media0.giphy.com/media/720rgUbLxziQdSQx5B/giphy.webp">
+
+3. #### Pagamento e recibo
+
+<img src="https://media4.giphy.com/media/yvG1g6dYJGOXJ1WbtH/giphy.gif">
